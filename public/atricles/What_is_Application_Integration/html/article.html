@@ -1,0 +1,111 @@
+<h1>What is Application Integration?</h1>
+<div>by <a href="https://www.linkedin.com/in/karolskrzymowski/">Karol Skrzymowski</a><br/></div>
+
+<div>
+Published: dd.mm.yyyy<br/>
+Last updated: dd.mm.yyyy<br/><br/>
+</div>
+
+<div>Placeholder for tags<br/><br/></div>
+
+<div class="collapsible_text" name="Disclaimer">Placeholder for any disclaimers like license usage, naming conventions, anything...<br/><br/></div>
+<h3>This seems to be a very easy question, ain't it?</h3>
+<div>
+    But if you go to google and search the phrase "Application Integration", you will get a multitude of vendor specific sites that try to define application integration to align with their marketing philosophy, not entirely saying what it is. Some focus on heavy integration platforms, others around message brokers, while some also speak of API Management solutions. All of those are components that compose application integration and can be used or not, depending on what are the requirements and what is the architecture of a particular application, system or IT ecosystem. Don't even try asking ChatGPT, as it will also produce an answer that has all of the Internet bias.
+</div>
+
+<h2>Why do we pose this question?</h2>
+
+<div>
+    After spending years in the field of Application Integration, we found that this is one of the most misunderstood and neglected areas of IT. At the same time it can be one of the most complex and interesting challenges to solve within a modern IT landscape.<br/><br/>
+
+    We currently find that Application Integration is not taught anywhere other than with the technology vendors. And as it comes with technology vendors, all their curriculums are usually limited by what they are actually selling, so some problems are either not addressed or solved in a vendor specific way, that blurs the understanding of certain application integration patterns and they do not show trade-offs between different solutions and architectural approaches. These are always left to be done by the customer himself.<br/><br/>
+
+    We realized that there is an educational gap that needs to be bridged, so we decided to build an Application Integration compendium by providing perspective on different architectural styles, their trade-offs and integration patterns.
+</div>
+
+<h2>So what is Application Integration?</h2>
+<div>Application Integration is the strive to connect different applications into a single larger ecosystem that functions as one. But what does that mean to function as one? In essence it is the capability to provide the right data to the right place at the right time, where Application Integration defines how that data transfer should happen.<br/><br/>
+
+As with everything that is done in IT, this can be done in a multitude of different ways, some better, some worse. This is the responsibility of Application Integration Architecture to answer how to build integrations between applications that are coherent with the overall architecture of the application or whole IT landscape. </div>
+
+
+<h2>Interoperability and Application Integration</h2>
+<div>As we try to define Application Integration it is also worth looking at Interoperability as it is commonly used as a synonym for Application Integration. As often it happens with language, the differences between definitions blur with time.<br/><br/>
+
+    If we look at ISO25010 (a bit outdated source for architectural characteristics definitions from 2011) it defines Interoperability as:
+    <pre>Interoperability - Degree to which two or more systems, products or components can exchange information and use the information that has been exchanged.</pre>
+    This definition already shows that Interoperability needs to be understood as more than just a technical term. The key phrases here are “exchange information” and “use information”, so while in Application Integration we focus on how to exchange information, the scope of interoperability goes further than that and can be understood as:<br/>
+- Technical Interoperability: (also known as Syntactic) it involves the ability of different systems to exchange data and share information at a technical level. It often requires adherence to common standards, protocols, and data formats. For example, if two systems use a common communication protocol (like HTTP), they have a higher level of technical interoperability.<br/>
+- Semantic Interoperability: is concerned with ensuring that the exchanged information is correctly understood and interpreted at the data level. It involves agreement on the meaning of exchanged data and the use of common data models. Semantic interoperability is crucial to avoid misinterpretation of data between applications.<br/>
+- Organizational Interoperability: (also known as Cross-Domain or Cross-Organization Interoperability) deals with the ability of different organizations or entities to work together. It involves not only technical and semantic aspects but also considerations and standardizations of business processes, policies, and legal frameworks. For example, two organizations might need to align their business processes to achieve seamless interoperability.<br/>
+</div>
+
+<h2>A bit of history</h2>
+
+<div>We think that to understand any topic is to foremost understand the why behind it. In case of Application Integration the why is hidden in its history and how interoperability developed over the years. <b>Why do we need to communicate?</b> Information was always the key in everything humankind did. The more information we had, the more power we could amass. Nowadays it is estimated that on average we consume about 34GB of media daily (not accounting for other information, not screen related!). Most people do not do much with that information, as most of it is forgotten in the next few days. But just understanding the capacity of our brains to process and store data, kind of shows the "why". We are information hungry! We need to exchange information all the time, because this is what we basically consume, whether this is gossip, a TV drama, or actually useful knowledge!
+    
+    But going back to Application Integration. The most basic form of exchange of data is a point to point (P2P) connection between two separate instances of some sort of software. In layman's terms this is a form of communication resembling a conversation in person between two people. This kind of communication was the first of its kind recognised in computer science, starting with the creation of <a href="https://en.wikipedia.org/wiki/ARPANET">ARPANet</a> and the first connection between computers in 1969 made with the <a href="https://en.wikipedia.org/wiki/Network_Control_Protocol_(ARPANET)">NCP</a> and later on in 1974 implementing the use of <a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">TCP</a>. This is the protocol we rely on to this day, last updated in August 2022 as <a href="https://datatracker.ietf.org/doc/html/rfc9293">RFC 9293</a>.
+
+<h2>The development of Application Integration over the years.</h2>
+
+As we are going to dive into details in the next articles it is worth mentioning what is the scope of our interest. Below you will find the main areas we will be exploring in Application Integration and their particular characteristics.
+
+<h3>Client - Server Application Integration</h3>
+<div>As mentioned above, the most basic form of interoperation, commonly used till this day and utilized by all applications that want to exchange data. It is a simple point to point (P2P), decentralized approach, which comes down to a single HTTP call to an interface. This is the building block of all communication onwards as all applications, even with middleware in place, rely on a Client-Server relationship.<br/><br/>
+
+Benefits:<br/>
+- Fast and fairly easy to build, quick to deploy<br/>
+- Cost effective in a small scale or short perspective<br/>
+Problems:<br/>
+- Complexity grows exponentially with each integration,<br/>
+- Heavy impact on application code and configuration with a medium or larger scale,<br/>
+- Tight coupling of applications (spaghetti architecture/big ball of mud),<br/>
+- No reusability,<br/>
+- Low or no maintainability with a larger scale,<br/>
+- Low or no proper logging and monitoring,<br/>
+- Close to no capability to refactor or introduce change fast,<br/>
+- Difficult or unavailable to work in a High Available mode,<br/>
+- Zero Trust Architecture is hard to implement.</div>
+
+<h3>Broker Application Integration</h3>
+<div>Broker type architecture solves some key problems of the Client-Server Architecture, as it introduces a centralized application facilitating the integration needs in a more organized manner. Unfortunately in certain cases this might not be enough to solve all problems, as it will depend on what we're trying to achieve.
+This kind of architecture is commonly used in small and medium enterprises, where the number of integrated systems is low (we usually put the number twenty here, but it is completely arbitrary). Furthermore this approach can be divided into two distinct patterns:<br/>
+- Messaging Service (e.g., JMS, AMQP, MQTT) - where an application message broker is introduced to facilitate all communication between systems on an asynchronous basis. This approach is common for Event-Driven Architectures or some Microservice System Architectures, where individual containers communicate with each other on a publish-subscribe basis.<br/>
+- Integration broker - broker type integration platforms with dedicated tooling that provide single purpose services tailored to the needs of each individual system. Services themselves have very limited reusability, but code reusability is enabled through code libraries and common processes.<br/><br/>
+
+Benefits:<br/>
+- Partially provide loose coupling of applications,<br/>
+- Code reusability enabled,<br/>
+- Lower impact on application code and configuration with larger scale,<br/>
+- Maintainable, but heavy to do on a large scale,<br/>
+- Enables Zero Trust Architecture to a limited extent,<br/>
+Problems:<br/>
+- Single point of failure (partially mitigated by multi node HA),<br/>
+- None or very limited services reusability,<br/>
+- Dedicated single purpose flows,<br/>
+- Limited capability to refactor or introduce change fast,<br/>
+- Requires effort and resources to build,</div>
+
+<h3>Orchestration-Driven Service Oriented Architecture (ODSOA) Application Integration</h3>
+<div>SOA is an architecture concept that emerged in the late 1990s and so far is the most successful in supporting large scale enterprise application integration, especially in organizations that are not technology driven. The approach focuses around exposing data in a standardized manner to enable creation of services providing different data objects or functions related to said objects (e.g. CRUD). Although it originally was built around SOAP Services and XML, it embraced RESTful Services as easily. Before the emergence of cloud-native technologies, this approach struggled with similar problems as the broker architectures in terms of availability and performance.<br/><br/>
+
+Benefits:<br/>
+- Provides loose coupling,<br/>
+- Major reusability (code, APIs, services),<br/>
+- Supports Zero Trust Architecture,<br/>
+- Inline with Microservice System Architecture,<br/>
+- Highly scalable horizontally and vertically,<br/>
+- Very low impact on application code and configuration,<br/>
+- High capability to react to changes,<br/>
+- Mitigates IT landscape complexity,<br/>
+Problems:<br/>
+- Requires effort and resources to build,<br/>
+- With first integrations it may seem to increase complexity and cost (lowers with each reuse),
+- Requires highly trained Integration Architects to be successful,<br/><br/>
+</div>
+
+
+<div class="collapsible_text" name="Glossary">Placeholder for glossary, terms, definitions, abbreviations... </div>
+<div class="collapsible_text" name="Sources"><a href="https://www.sdsc.edu/News%20Items/PR110613_hmi.html">U.S. Media Consumption to Rise to 15.5 Hours a Day – Per Person – by 2015</a> by James Short, San Diego Supercomputer Center at the University of California San Diego<br/></div>
+<div class="collapsible_text" name="Credits">Placeholder for credits given to peer reviewers, contributors, etc.</div>
